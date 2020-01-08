@@ -1,13 +1,13 @@
 if (!Promise.wrap) {
     Promise.wrap = function (fn) {
         return function () {
-            var args = [].slice.call(arguments);
-            return new Promise(function (resolve, reject) {
-                fn.apply(null, args.concat(function (err, v) {
+            const args = [].slice.call(arguments);
+            return new Promise((resolve, reject) => {
+                fn.apply(null, args.concat((err, res) => {
                     if (err) {
                         reject(err);
                     } else {
-                        resolve(v);
+                        resolve(res);
                     }
                 }))
             })
@@ -15,17 +15,17 @@ if (!Promise.wrap) {
     }
 }
 
-function test(data,cb) {
+function test(data, cb) {
     setTimeout(() => {
         if (Math.random() > 0.5) {
             cb("err message");
         } else {
-            cb(null, "ok");
+            cb(null, data);
         }
     }, 2000);
 };
 
-Promise.wrap(test)().then((res) => {
+Promise.wrap(test)(666).then((res) => {
     console.log(res);
 }, (err) => {
     console.log(err);
