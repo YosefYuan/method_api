@@ -1,0 +1,10 @@
+<button onclick="alert(this.tagName.toLowerCase());">
+    Show this
+</button>
+<!-- click -> button -->
+
+<button onclick="alert((function() { return this; })());">
+    Show inner this
+</button>
+
+<!-- click -> [object Window] -->
