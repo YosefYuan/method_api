@@ -11,7 +11,6 @@ function curry(fn) {
     }
 }
 
-const fn = (a, b) => a + b;
-fn.length = 2;
-const b = curry(fn)(1)(2);
+const fn = (a, b, c) => a + b + c;
+const b = curry(fn)(1)(2)(3);
 console.log("b", b);
