@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function showLocation(data) {
+            // 定位的地址信息 根据需要写入对象属性
+            var locationInfo = {
+                // 省份
+                province: data.content.address_detail.province,
+                // 城市
+                city: data.content.address_detail.city
+            }
+            alert("检查到您的IP地址为" + locationInfo.province + locationInfo.city);
+        }
+
+        function getScript(url) {
+            const scriptNode = document.createElement('script');
+            scriptNode.src = url;
+            document.body.appendChild(scriptNode);
+        }
+
+        function getLocation(cbName) {
+            const ak = "XXX";
+            var url = `http://api.map.baidu.com/location/ip?ak=${ak}&callback=${cbName}`;
+            getScript(url);
+        }
+        getLocation('showLocation');
+    </script>
+    <!-- <script src="http://api.map.baidu.com/location/ip?ak=XXX&callback=showLocation"> -->
+    </script>
+</body>
+
+</html>
